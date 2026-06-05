@@ -1343,13 +1343,19 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     const resp=await fetch('/.netlify/functions/anthropic-proxy',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1024,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2048,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
     });
     const d=await resp.json();
     let t='';if(d.content)for(const b of d.content)if(b.type==='text')t+=b.text;
-    const jsonMatch=t.match(/\{[\s\S]*?\}/);
-    if(!jsonMatch)return{found:false,reason:'unavailable'};
-    const p=JSON.parse(jsonMatch[0]);
+    // Find the JSON object containing 'found' key
+    let p=null;
+    const allMatches=t.match(/\{[^{}]*"found"[^{}]*\}/g)||t.match(/\{[\s\S]*?"found"[\s\S]*?\}/g);
+    if(allMatches){
+      for(const m of allMatches){
+        try{p=JSON.parse(m);if('found' in p)break;}catch(e){}
+      }
+    }
+    if(!p)return{found:false,reason:'unavailable'};
     if(p.found){if(p.year<my)return{found:false,reason:'too_old',year:p.year,name:p.name||company};return p;}
     if(p.tooOld)return{found:false,reason:'too_old',year:p.year,name:p.name||company};
     return{found:false,reason:'unavailable'};
