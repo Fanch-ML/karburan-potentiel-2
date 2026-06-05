@@ -1333,32 +1333,17 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   }
 
   async function searchCompanyFinancials(company){
-    const cy=new Date().getFullYear(),my=cy-2,siren=getEffectiveSiren();
-    let prompt;
-    if(siren){
-      prompt='Cherche les donnees financieres de la societe SIREN '+siren+' sur pappers.fr (https://www.pappers.fr/entreprise/'+siren+'), verif.com ou societe.com. Recupere le resultat net et le CA de l exercice '+my+' ou '+(cy-1)+' uniquement. Reponds UNIQUEMENT avec un objet JSON valide, rien d autre : {"found":true,"name":"NOM","year":'+my+',"resultatNet":2079037,"chiffreAffaires":38052900,"source":"pappers.fr"} OU {"found":false,"tooOld":true,"year":2022,"name":"NOM"} OU {"found":false,"tooOld":false}';
-    }else{
-      prompt='Societe francaise : "'+company+'". Cherche sur pappers.fr ou verif.com resultat net et CA exercice '+my+' ou '+(cy-1)+'. Reponds UNIQUEMENT avec un objet JSON valide : {"found":true,"name":"NOM","year":'+my+',"resultatNet":123456,"chiffreAffaires":789000,"source":"pappers.fr"} OU {"found":false,"tooOld":true,"year":2022,"name":"NOM"} OU {"found":false,"tooOld":false}';
-    }
+    const siren=getEffectiveSiren();
     const resp=await fetch('/.netlify/functions/anthropic-proxy',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2048,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({siren:siren||null,company:company})
     });
     const d=await resp.json();
-    let t='';if(d.content)for(const b of d.content)if(b.type==='text')t+=b.text;
-    // Find the JSON object containing 'found' key
-    let p=null;
-    const allMatches=t.match(/\{[^{}]*"found"[^{}]*\}/g)||t.match(/\{[\s\S]*?"found"[\s\S]*?\}/g);
-    if(allMatches){
-      for(const m of allMatches){
-        try{p=JSON.parse(m);if('found' in p)break;}catch(e){}
-      }
-    }
-    if(!p)return{found:false,reason:'unavailable'};
-    if(p.found){if(p.year<my)return{found:false,reason:'too_old',year:p.year,name:p.name||company};return p;}
-    if(p.tooOld)return{found:false,reason:'too_old',year:p.year,name:p.name||company};
-    return{found:false,reason:'unavailable'};
+    const my=new Date().getFullYear()-2;
+    if(d.found){if(d.year&&d.year<my)return{found:false,reason:'too_old',year:d.year,name:d.name||company};return d;}
+    if(d.tooOld)return{found:false,reason:'too_old',year:d.year,name:d.name||company};
+    return{found:false,reason:d.reason||'unavailable'};
   }
 
   function showResult() {
