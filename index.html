@@ -638,11 +638,15 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
       <div>
         <label style="font-size:0.8rem;font-weight:600;color:var(--muted);display:block;margin-bottom:6px;">Nom de l'entreprise *</label>
         <div style="position:relative;">
-          <input type="text" id="companyInput" placeholder="Nom de votre entreprise" oninput="checkEmail()" onblur="triggerCompanySearch()" style="width: 100%; padding: 13px 16px; border-color: rgb(28, 117, 188); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; font-family: Inter, sans-serif; font-size: 0.92rem; color: var(--text); background: var(--white); outline: none; transition: border-color 0.18s;" onfocus="this.style.borderColor=&#39;#1c75bc&#39;" data-listener-added_0acf50ec="true">
+          <input type="text" id="companyInput" placeholder="Nom de votre entreprise" oninput="checkEmail()" style="width: 100%; padding: 13px 16px; border-color: rgb(28, 117, 188); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; font-family: Inter, sans-serif; font-size: 0.92rem; color: var(--text); background: var(--white); outline: none; transition: border-color 0.18s;" onfocus="this.style.borderColor=&#39;#1c75bc&#39;" data-listener-added_0acf50ec="true">
           <div id="companySearchStatus" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 0.72rem; color: var(--muted); display: none; align-items: center; gap: 6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8892a4" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> Recherche en cours…</div>
-        </div>      <div style="margin-top:10px;"><label style="font-size:0.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:5px;">SIREN <span style="font-weight:400;opacity:0.7;">(optionnel)</span></label><div style="display:flex;align-items:center;gap:8px;"><input type="text" id="sirenInput" placeholder="442 223 269" maxlength="11" oninput="checkSiren(this)" style="width:180px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.92rem;font-weight:700;color:var(--text);background:var(--white);outline:none;" onfocus="this.style.borderColor='#1c75bc'" onblur="this.style.borderColor='var(--border)'"><span id="sirenTag" style="display:none;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:100px;background:var(--blue);color:#fff;">✓ SIREN valide</span></div></div>
-
+        </div>
+        <div style="margin-top:10px;"><label style="font-size:0.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:5px;">SIREN <span style="font-weight:400;opacity:0.7;">(optionnel)</span></label><div style="display:flex;align-items:center;gap:8px;"><input type="text" id="sirenInput" placeholder="442 223 269" maxlength="11" oninput="checkSiren(this)" style="width:180px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.92rem;font-weight:700;color:var(--text);background:var(--white);outline:none;" onfocus="this.style.borderColor='#1c75bc'" onblur="this.style.borderColor='var(--border)'"><span id="sirenTag" style="display:none;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:100px;background:var(--blue);color:#fff;">✓ SIREN valide</span></div></div>
         <div id="companySearchResult" style="display:none;margin-top:8px;padding:8px 12px;border-radius:8px;font-size:0.75rem;line-height:1.5;"></div>
+        <div style="margin-top:10px;">
+          <button id="btnAnalyse" onclick="triggerCompanySearch()" style="display:inline-flex;align-items:center;gap:7px;padding:8px 16px;background:var(--white);border:1.5px solid var(--blue);border-radius:8px;font-family:'Manrope',sans-serif;font-size:0.78rem;font-weight:700;color:var(--blue);cursor:pointer;" onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background='var(--white)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Analyser les données publiques de cette entreprise</button>
+          <div style="font-size:0.68rem;color:var(--muted);margin-top:5px;">Recherche sur Pappers, Société.com, Infogreffe — optionnel.</div>
+        </div>
       </div>
       <div style="font-size:0.72rem;color:var(--muted);">🔒 Données utilisées uniquement dans le cadre de votre qualification Karburan. Aucun spam.</div>
     </div>
@@ -883,9 +887,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     <div class="formula-box" id="formulaRow">Cible <strong>11–34 portés actifs</strong> (1.2–3.8 entrées/mois) · durée <strong>9 mois</strong> · CJM <strong>570 €</strong> · 4.0% net − 1 000 € HT/mois = <strong>24 115&nbsp;€ à 99 629&nbsp;€ an 1</strong></div>
 
     <!-- Impact résultat net -->
-    <!-- Statut recherche financière -->
-    <div id="searchStatusResult" style="display:none;margin-bottom:10px;padding:8px 14px;border-radius:8px;font-size:0.78rem;"></div>
-
     <div id="impactBlock" style="display:none;background:linear-gradient(135deg,#eef5fc 0%,#f0fdf4 100%);border:1.5px solid #1c75bc;border-radius:12px;padding:16px 20px;margin-bottom:20px;">
       <div style="display:flex;align-items:flex-start;gap:14px;">
         <div style="width:40px;height:40px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0;">📈</div>
@@ -1081,7 +1082,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 
 <script>
   const answers = {};
-  let companyData = null; // financial data from public search
   const questions = {
     1:'Part freelances en mission', 2:'Cible de portés actifs', 3:'CJM freelances',
     4:'Durée moyenne d\'une mission', 5:'Mode de contractualisation',
@@ -1181,46 +1181,32 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 
   function getEffectiveDur(){const el=document.getElementById('durInput');const f=el?parseInt(el.value):NaN;return(f>=1&&f<=36)?f:durMid[answers[4]]||9;}
 
-  function checkSiren(el){
-    const v=el.value.replace(/[^0-9]/g,''); el.value=v;
-    const tag=document.getElementById('sirenTag');
-    if(v.length===9){
-      tag.style.display='inline-flex';
-      tag.textContent='Recherche…';
-      fetch('https://recherche-entreprises.api.gouv.fr/search?q='+v+'&page=1&per_page=1')
-        .then(r=>r.json())
-        .then(data=>{
-          const res=data.results&&data.results[0];
-          const name=res?(res.nom_complet||res.nom_raison_sociale||''):'';
-          const ci=document.getElementById('companyInput');
-          if(ci&&name){ci.value=name;checkEmail();}
-          tag.textContent=name?'✓ '+name:'✓ SIREN valide';
-        })
-        .catch(()=>{tag.textContent='✓ SIREN valide';});
-    } else {
-      tag.style.display='none';
-    }
-  }
+  function checkSiren(el){const v=el.value.replace(/[^0-9]/g,'');el.value=v;const tag=document.getElementById('sirenTag');if(tag)tag.style.display=v.length===9?'inline-flex':'none';
+    if(v.length===9){tag.textContent='Recherche…';fetch('https://recherche-entreprises.api.gouv.fr/search?q='+v+'&page=1&per_page=1').then(r=>r.json()).then(data=>{const res=data.results&&data.results[0];const name=res?(res.nom_complet||res.nom_raison_sociale||''):'';const ci=document.getElementById('companyInput');if(ci&&name){ci.value=name;checkEmail();}tag.textContent=name?'✓ '+name:'✓ SIREN valide';}).catch(()=>{tag.textContent='✓ SIREN valide';});}}
 
   function getEffectiveSiren(){const el=document.getElementById('sirenInput');const v=el?el.value.replace(/[^0-9]/g,''):'';return v.length===9?v:null;}
 
-  let _annualNetLow=0,_annualNetHigh=0;
+  let companyData=null,_annualNetLow=0,_annualNetHigh=0,_lastSearched='';
 
   function updateSearchStatusResult(data){
-    const ss=document.getElementById('searchStatusResult');
-    if(!ss) return;
-    if(data && data.found){
-      ss.style.display='none'; // impact block already visible
-    } else if(data && data.reason==='too_old'){
-      ss.style.display='block';ss.style.background='#fffbeb';ss.style.color='#92400e';ss.style.border='1px solid #f59e0b';
-      ss.innerHTML='⚠️ Données trouvées pour <strong>'+(data.name||'cette société')+'</strong> mais antérieures à N-2 (exercice '+data.year+') — impact non calculé.';
-    } else {
-      ss.style.display='block';ss.style.background='#f8fafc';ss.style.color='#64748b';ss.style.border='1px solid #e2e8f0';
-      ss.innerHTML='ℹ️ Aucune donnée financière publique disponible pour cette société — impact non calculé.';
-    }
+    const ss=document.getElementById('searchStatusResult');if(!ss)return;
+    if(data&&data.found){ss.style.display='none';}
+    else if(data&&data.reason==='too_old'){ss.style.display='block';ss.style.background='#fffbeb';ss.style.color='#92400e';ss.style.border='1px solid #f59e0b';ss.innerHTML='⚠️ Données trouvées pour <strong>'+(data.name||'cette société')+'</strong> mais antérieures à N-2 (exercice '+data.year+') — impact non calculé.';}
+    else{ss.style.display='block';ss.style.background='#f8fafc';ss.style.color='#64748b';ss.style.border='1px solid #e2e8f0';ss.innerHTML='ℹ️ Aucune donnée financière publique disponible pour cette société — impact non calculé.';}
   }
 
-  function updateImpactBlock(){const b=document.getElementById('impactBlock');if(!b)return;if(companyData&&companyData.found&&companyData.resultatNet>0){const rn=companyData.resultatNet,kL=_annualNetLow>0?_annualNetLow:0,kH=_annualNetHigh>0?_annualNetHigh:0;if(kH>0){const pL=((kL/rn)*100).toFixed(1),pH=((kH/rn)*100).toFixed(1),pd=kL>0?'+'+pL+'% à +'+pH+'%':'+'+pH+'%';document.getElementById('impactPct').textContent=pd;document.getElementById('impactText').innerHTML='Sur la base du résultat net <strong>'+companyData.year+'</strong> (<strong>'+fmt(rn)+'</strong>), l\'estimation Karburan représente <strong style="color:var(--blue)">'+pd+'</strong> de résultat supplémentaire.';document.getElementById('impactSource').textContent='Source : '+companyData.source+' · Exercice '+companyData.year;b.style.display='block';return;}}b.style.display='none';}
+  function updateImpactBlock(){
+    const b=document.getElementById('impactBlock');if(!b)return;
+    if(companyData&&companyData.found&&companyData.resultatNet>0){
+      const rn=companyData.resultatNet,kL=_annualNetLow>0?_annualNetLow:0,kH=_annualNetHigh>0?_annualNetHigh:0;
+      if(kH>0){const pL=((kL/rn)*100).toFixed(1),pH=((kH/rn)*100).toFixed(1),pd=kL>0?'+'+pL+'% à +'+pH+'%':'+'+pH+'%';
+        document.getElementById('impactPct').textContent=pd;
+        document.getElementById('impactText').innerHTML='Sur la base du résultat net <strong>'+companyData.year+'</strong> (<strong>'+fmt(rn)+'</strong>), l\'estimation Karburan représente <strong style="color:var(--blue)">'+pd+'</strong> de résultat supplémentaire.';
+        document.getElementById('impactSource').textContent='Source : '+companyData.source+' · Exercice '+companyData.year;
+        b.style.display='block';return;}
+    }
+    b.style.display='none';
+  }
 
   function getEffectiveCjm(){
     const free = parseFloat(document.getElementById('cjmInput').value);
@@ -1304,107 +1290,68 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     function fmt(n){return new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);}
 
   // ── Company financial data search ─────────────────────────────
-  let _searchTimer = null;
-  let _lastSearched = '';
 
   async function triggerCompanySearch(){
-    const company = (document.getElementById('companyInput').value || '').trim();
-    if(!company || company.length < 3 || company === _lastSearched) return;
-    _lastSearched = company;
-    companyData = null;
-
-    const status = document.getElementById('companySearchStatus');
-    const result = document.getElementById('companySearchResult');
-    // Bloquer le bouton Démarrer pendant l'analyse
-    const nextEmail = document.getElementById('next-email');
-    if(nextEmail){ nextEmail.disabled = true; nextEmail.title = 'Analyse financière en cours...'; }
-    status.style.display = 'flex';
-    status.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8892a4" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Recherche en cours…';
-    result.style.display = 'none';
-
-    try {
-      const data = await searchCompanyFinancials(company);
-      companyData = data;
-      // Mise à jour rétroactive si page résultats déjà affichée
-      const _resultScreen = document.getElementById('screen-result');
-      if(_resultScreen && _resultScreen.classList.contains('active')){
-        updateImpactBlock();
-          updateSearchStatusResult(data);
+    const btn=document.getElementById('btnAnalyse');
+    if(btn)btn.style.display='none';
+    const company=(document.getElementById('companyInput').value||'').trim();
+    if(!company||company.length<3||company===_lastSearched)return;
+    _lastSearched=company;
+    companyData=null;
+    const status=document.getElementById('companySearchStatus');
+    const result=document.getElementById('companySearchResult');
+    const nextEmail=document.getElementById('next-email');
+    if(nextEmail)nextEmail.disabled=true;
+    status.style.display='flex';
+    status.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8892a4" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Recherche en cours…';
+    result.style.display='none';
+    try{
+      const data=await searchCompanyFinancials(company);
+      companyData=data;
+      if(document.getElementById('screen-result')&&document.getElementById('screen-result').classList.contains('active')){updateImpactBlock();updateSearchStatusResult(data);}
+      status.innerHTML='';status.style.display='none';
+      result.style.display='block';
+      if(data&&data.found){
+        result.style.background='#f0fdf4';result.style.border='1px solid #34d399';result.style.color='#065f46';
+        result.innerHTML='✓ <strong>'+data.name+'</strong> · Résultat net '+data.year+' : <strong>'+fmt(data.resultatNet)+'</strong>'+(data.chiffreAffaires?' · CA : <strong>'+fmt(data.chiffreAffaires)+'</strong>':'')+' <span style="opacity:0.7;font-size:0.68rem">('+data.source+')</span>';
+      }else if(data&&data.reason==='too_old'){
+        result.style.background='#fffbeb';result.style.border='1px solid #f59e0b';result.style.color='#92400e';
+        result.innerHTML='⚠️ Données trouvées pour <strong>'+(data.name||company)+'</strong> mais trop anciennes ('+data.year+') — seules les données '+(new Date().getFullYear()-2)+' ou '+(new Date().getFullYear()-1)+' sont utilisées.';
+      }else{
+        result.style.background='#f8fafc';result.style.border='1px solid #e2e8f0';result.style.color='#64748b';
+        result.innerHTML="ℹ️ Données financières publiques non disponibles pour <strong>"+company+"</strong> — l'impact ne sera pas calculé.";
       }
-      // Débloquer le bouton Démarrer dans tous les cas
-      const _ne = document.getElementById('next-email');
-      if(_ne && document.getElementById('emailInput').value.includes('@')){
-        _ne.disabled = false; _ne.title = '';
-      }
-
-      if(data && data.found){
-        status.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Données trouvées';
-        result.style.display = 'block';
-        result.style.background = '#f0fdf4';
-        result.style.border = '1px solid #34d399';
-        result.style.color = '#065f46';
-        result.innerHTML = '✓ <strong>' + data.name + '</strong> · Résultat net ' + data.year + ' : <strong>' + fmt(data.resultatNet) + '</strong>'
-          + (data.chiffreAffaires ? ' · CA : <strong>' + fmt(data.chiffreAffaires) + '</strong>' : '')
-          + ' <span style="opacity:0.7;font-size:0.68rem">(' + data.source + ')</span>';
-      } else {
-        status.innerHTML = '';
-        status.style.display = 'none';
-        result.style.display = 'none';
-      }
-    } catch(e) {
-      status.style.display = 'none';
-      result.style.display = 'block';
-      result.style.background = '#fef2f2'; result.style.border = '1px solid #fca5a5'; result.style.color = '#991b1b';
-      result.innerHTML = '⚠️ Erreur lors de la recherche — vous pouvez continuer sans données financières.';
-      companyData = null;
-      const _ne2 = document.getElementById('next-email');
-      if(_ne2 && document.getElementById('emailInput').value.includes('@')){
-        _ne2.disabled = false; _ne2.title = '';
-      }
+      const _ne=document.getElementById('next-email');
+      if(_ne&&document.getElementById('emailInput').value.includes('@')){_ne.disabled=false;_ne.title='';}
+    }catch(e){
+      status.style.display='none';
+      result.style.display='block';result.style.background='#fef2f2';result.style.border='1px solid #fca5a5';result.style.color='#991b1b';
+      result.innerHTML="⚠️ Erreur lors de la recherche — vous pouvez continuer sans données financières.";
+      const _ne2=document.getElementById('next-email');
+      if(_ne2&&document.getElementById('emailInput').value.includes('@')){_ne2.disabled=false;}
     }
   }
 
   async function searchCompanyFinancials(company){
-    const cy=new Date().getFullYear(), my=cy-2, siren=getEffectiveSiren();
+    const cy=new Date().getFullYear(),my=cy-2,siren=getEffectiveSiren();
     let prompt;
     if(siren){
-      prompt = 'Cherche les donnees financieres de la societe SIREN '+siren
-        +' sur pappers.fr (https://www.pappers.fr/entreprise/'+siren
-        +') ou verif.com. Resultat net et CA exercice '+my+' ou '+(cy-1)+' uniquement.'
-        +' Reponds UNIQUEMENT avec un objet JSON valide, rien d autre :'
-        +' {"found":true,"name":"NOM","year":'+my+',"resultatNet":2079037,"chiffreAffaires":38052900,"source":"pappers.fr"}'
-        +' OU {"found":false,"tooOld":true,"year":2022,"name":"NOM"}'
-        +' OU {"found":false,"tooOld":false}';
-    } else {
-      prompt = 'Societe francaise : "'+company+'". Cherche sur pappers.fr ou verif.com resultat net et CA exercice '+my+' ou '+(cy-1)+'.'
-        +' Reponds UNIQUEMENT avec un objet JSON valide, rien d autre :'
-        +' {"found":true,"name":"NOM","year":'+my+',"resultatNet":123456,"chiffreAffaires":789000,"source":"pappers.fr"}'
-        +' OU {"found":false,"tooOld":true,"year":2022,"name":"NOM"}'
-        +' OU {"found":false,"tooOld":false}';
+      prompt='Cherche les donnees financieres de la societe SIREN '+siren+' sur pappers.fr (https://www.pappers.fr/entreprise/'+siren+'), verif.com ou societe.com. Recupere le resultat net et le CA de l exercice '+my+' ou '+(cy-1)+' uniquement. Reponds UNIQUEMENT avec un objet JSON valide, rien d autre : {"found":true,"name":"NOM","year":'+my+',"resultatNet":2079037,"chiffreAffaires":38052900,"source":"pappers.fr"} OU {"found":false,"tooOld":true,"year":2022,"name":"NOM"} OU {"found":false,"tooOld":false}';
+    }else{
+      prompt='Societe francaise : "'+company+'". Cherche sur pappers.fr ou verif.com resultat net et CA exercice '+my+' ou '+(cy-1)+'. Reponds UNIQUEMENT avec un objet JSON valide : {"found":true,"name":"NOM","year":'+my+',"resultatNet":123456,"chiffreAffaires":789000,"source":"pappers.fr"} OU {"found":false,"tooOld":true,"year":2022,"name":"NOM"} OU {"found":false,"tooOld":false}';
     }
-    const resp = await fetch('/.netlify/functions/anthropic-proxy',{
+    const resp=await fetch('/.netlify/functions/anthropic-proxy',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1024,
-        tools:[{type:'web_search_20250305',name:'web_search'}],
-        messages:[{role:'user',content:prompt}]
-      })
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1024,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
     });
-    const d = await resp.json();
-    // Collect all text blocks
-    let t = '';
-    if(d.content) for(const b of d.content) if(b.type==='text') t += b.text;
-    // Extract first JSON object from response (robust)
-    const jsonMatch = t.match(/\{[\s\S]*?\}/);
-    if(!jsonMatch) return {found:false, reason:'unavailable'};
-    const p = JSON.parse(jsonMatch[0]);
-    if(p.found){
-      if(p.year < my) return{found:false,reason:'too_old',year:p.year,name:p.name||company};
-      return p;
-    }
-    if(p.tooOld) return{found:false,reason:'too_old',year:p.year,name:p.name||company};
+    const d=await resp.json();
+    let t='';if(d.content)for(const b of d.content)if(b.type==='text')t+=b.text;
+    const jsonMatch=t.match(/\{[\s\S]*?\}/);
+    if(!jsonMatch)return{found:false,reason:'unavailable'};
+    const p=JSON.parse(jsonMatch[0]);
+    if(p.found){if(p.year<my)return{found:false,reason:'too_old',year:p.year,name:p.name||company};return p;}
+    if(p.tooOld)return{found:false,reason:'too_old',year:p.year,name:p.name||company};
     return{found:false,reason:'unavailable'};
   }
 
@@ -1586,12 +1533,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     _annualNetLow=annualNetLow;
     _annualNetHigh=annualNetHigh;
     updateImpactBlock();
-    // Show search status on results page
-    if(!companyData && _lastSearched){
-      const _ss=document.getElementById('searchStatusResult');
-      if(_ss){_ss.style.display='block';_ss.style.background='#f0f9ff';_ss.style.color='#0369a1';_ss.style.border='1px solid #bae6fd';
-        _ss.innerHTML='🔍 Analyse financière en cours — l\'impact apparaîtra automatiquement si des données publiques sont trouvées.';}
-    }
+    if(!companyData&&_lastSearched){const _ss=document.getElementById('searchStatusResult');if(_ss){_ss.style.display='block';_ss.style.background='#f0f9ff';_ss.style.color='#0369a1';_ss.style.border='1px solid #bae6fd';_ss.innerHTML='🔍 Analyse financière en cours — l\'impact apparaîtra automatiquement si des données publiques sont trouvées.';}}
 
     document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
     document.getElementById('screen-result').classList.add('active');
@@ -1898,7 +1840,11 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     document.getElementById('cjmInput').value='';
     const _si=document.getElementById('sirenInput');if(_si)_si.value='';
     const _st=document.getElementById('sirenTag');if(_st)_st.style.display='none';
-    _annualNetLow=0;_annualNetHigh=0;
+    const _ba=document.getElementById('btnAnalyse');if(_ba)_ba.style.display='inline-flex';
+    companyData=null;_lastSearched='';_annualNetLow=0;_annualNetHigh=0;
+    const _sr=document.getElementById('companySearchResult');if(_sr)_sr.style.display='none';
+    const _ss2=document.getElementById('searchStatusResult');if(_ss2)_ss2.style.display='none';
+    const _dtag=document.getElementById('durOverrideTag');if(_dtag){document.getElementById('durInput').value='';_dtag.style.display='none';}
     const tag=document.getElementById('cjmOverrideTag'); if(tag) tag.style.display='none';
     document.getElementById('commInput').value='';
     document.getElementById('commSummary').style.display='none';
